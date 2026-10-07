@@ -9,6 +9,7 @@ Aplicación sencilla para gestionar un catálogo de biblioteca.
 - `frontend/`: interfaz React con TypeScript y Vite. Las peticiones a la API están en `src/services/`; los tipos compartidos del frontend están en `src/types/`.
 - `backend/`: API FastAPI en Python. `app/routes/` define rutas, `app/services/` contiene lógica de libros y `app/models/` define modelos Pydantic.
 - `docker-compose.yml` configura los servicios frontend y backend.
+- `memory-bank/`: documentación del producto (`product.md`), contexto técnico (`techContext.md`) y estado, limitaciones y próximos pasos (`progress.md`).
 
 ## comandos
 
@@ -37,6 +38,7 @@ Aplicación sencilla para gestionar un catálogo de biblioteca.
 - Antes de modificar el frontend, lee `.agents/rules/frontend.md`; antes de modificar el backend, lee `.agents/rules/backend.md`. Si el cambio afecta ambas capas, lee las dos reglas.
 - Si cambias una ruta, host o puerto de API, revisa conjuntamente el cliente en `frontend/src/services/books.ts`, el montaje de rutas en `backend/app/main.py`, el proxy de `frontend/vite.config.ts` y la configuración de `docker-compose.yml`.
 - Al cambiar una operación de libro, revisa el recorrido completo: componente, servicio frontend, ruta backend, modelo y servicio backend.
+- Después de cada nueva implementación o cambio importante en el código, actualiza los documentos afectados de `memory-bank/` para que describan el estado real del proyecto. Mantén `product.md` y `techContext.md` alineados con las funciones y la arquitectura actuales, y actualiza `progress.md` con funciones, limitaciones y próximos pasos. Distingue hechos comprobados de sugerencias; no conserves afirmaciones que hayan quedado obsoletas.
 
 ## límites
 
