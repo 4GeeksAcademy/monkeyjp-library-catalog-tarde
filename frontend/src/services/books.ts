@@ -10,6 +10,20 @@ export async function getBooks(): Promise<Book[]> {
   return response.json();
 }
 
+export async function getBookById(id: number): Promise<Book> {
+  const response = await fetch(`/api/books/${id}`);
+
+  if (response.status === 404) {
+    throw new Error("Book not found");
+  }
+
+  if (!response.ok) {
+    throw new Error("Could not load book");
+  }
+
+  return response.json();
+}
+
 export async function createBook(
   book: Omit<Book, "id">
 ): Promise<Book> {
