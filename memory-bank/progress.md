@@ -2,11 +2,11 @@
 
 ## Funciones
 
-- La interfaz muestra el catálogo, filtra por título o autor y calcula el total de libros disponibles y no disponibles. [frontend/src/App.tsx](../frontend/src/App.tsx)
+- La interfaz muestra el catálogo, filtra por coincidencia parcial en el título sin distinguir mayúsculas y calcula el total de libros disponibles y no disponibles. [frontend/src/App.tsx](../frontend/src/App.tsx)
 - Permite añadir libros con título, autor y año; al crear, el formulario envía `available: true`. [frontend/src/components/BookForm.tsx](../frontend/src/components/BookForm.tsx)
 - Permite buscar un libro por ID, valida que sea entero y positivo, muestra carga y errores, y reutiliza la tarjeta de libro. [frontend/src/components/BookLookup.tsx](../frontend/src/components/BookLookup.tsx), [frontend/src/components/BookCard.tsx](../frontend/src/components/BookCard.tsx)
-- El backend ofrece listar, consultar por ID y crear libros. La búsqueda por ID devuelve `404` si no existe; la creación responde `201`. [backend/app/routes/books.py](../backend/app/routes/books.py)
-- En las verificaciones realizadas, `npm run build` y `npm run lint` pasaron. La API respondió `200` para un ID existente y `404` para uno inexistente.
+- El backend ofrece listar y filtrar por título, consultar por ID y crear libros. La búsqueda por ID devuelve `404` si no existe; la creación responde `201`. [backend/app/routes/books.py](../backend/app/routes/books.py)
+- En las verificaciones realizadas, `npm run build` y `npm run lint` pasaron. La API respondió correctamente a búsquedas parciales, diferencias de mayúsculas, título vacío y sin coincidencias; también respondió `200` para un ID existente y `404` para uno inexistente.
 
 ## Limitaciones actuales
 

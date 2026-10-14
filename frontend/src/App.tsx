@@ -10,6 +10,10 @@ export default function App() {
   const [books, setBooks] = useState<Book[]>([]);
   const [error, setError] = useState("");
   const [search, setSearch] = useState("");
+  const [searchResults, setSearchResults] = useState<{
+    term: string;
+    books: Book[];
+  } | null>(null);
 
   useEffect(() => {
     getBooks()
@@ -17,14 +21,25 @@ export default function App() {
       .catch(() => setError("Could not load catalog"));
   }, []);
 
-  const filteredBooks = books.filter((book) => {
-    const term = search.toLowerCase();
+  useEffect(() => {
+    if (!search) return;
 
-    return (
-      book.title.toLowerCase().includes(term) ||
-      book.author.toLowerCase().includes(term)
-    );
-  });
+    let isCurrent = true;
+    getBooks(search)
+      .then((results) => {
+        if (isCurrent) setSearchResults({ term: search, books: results });
+      })
+      .catch(() => {
+        if (isCurrent) setError("Could not load catalog");
+      });
+
+    return () => {
+      isCurrent = false;
+    };
+  }, [search, books]);
+
+  const displayedBooks =
+    searchResults?.term === search ? searchResults.books : books;
 
   const availableBooks = books.filter((book) => book.available).length;
 
@@ -113,9 +128,9 @@ export default function App() {
             </div>
           )}
 
-          {filteredBooks.length > 0 ? (
+          {displayedBooks.length > 0 ? (
             <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-              {filteredBooks.map((book) => (
+              {displayedBooks.map((book) => (
                 <BookCard key={book.id} book={book} />
               ))}
             </div>
@@ -126,7 +141,7 @@ export default function App() {
                 className="mx-auto mb-3 text-slate-300"
               />
               <p className="font-medium text-slate-600">
-                No books found
+                No se encontraron libros
               </p>
             </div>
           )}

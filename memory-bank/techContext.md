@@ -26,6 +26,6 @@ La presencia de estos comandos no implica que se hayan ejecutado o que hayan pas
 
 ## Comunicación frontend-backend
 
-- El frontend usa `fetch` para llamar a `GET /api/books`, `GET /api/books/{id}` y `POST /api/books`. Las funciones están en [frontend/src/services/books.ts](../frontend/src/services/books.ts).
+- El frontend usa `fetch` para llamar a `GET /api/books` o `GET /api/books?title=<string>`, `GET /api/books/{id}` y `POST /api/books`. El parámetro `title` filtra por coincidencia parcial sin distinguir mayúsculas; al omitirlo o dejarlo vacío se listan todos los libros. Las funciones están en [frontend/src/services/books.ts](../frontend/src/services/books.ts).
 - FastAPI monta las rutas de libros bajo `/api`; la ruta por ID responde `404` si no encuentra el libro. Referencias: [backend/app/main.py](../backend/app/main.py), [backend/app/routes/books.py](../backend/app/routes/books.py).
 - Vite reenvía las peticiones `/api` a `http://host.docker.internal:8000`. Compose configura ese host para el contenedor frontend. Referencias: [frontend/vite.config.ts](../frontend/vite.config.ts), [docker-compose.yml](../docker-compose.yml).
