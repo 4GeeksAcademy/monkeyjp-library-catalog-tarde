@@ -2,13 +2,13 @@
 
 ## Resumen
 
-Aplicación web para gestionar un catálogo de biblioteca. Permite consultar la colección, filtrar libros por título o autor, buscar un libro por ID y añadir libros. La interfaz muestra el total de libros y cuántos están disponibles o no disponibles.
+Aplicación web para gestionar un catálogo de biblioteca. Permite consultar la colección, filtrar libros por coincidencia parcial en el título sin distinguir mayúsculas, buscar un libro por ID y añadir libros. La interfaz muestra el total de libros y cuántos están disponibles o no disponibles.
 
 Cada libro contiene `id`, `title`, `author`, `year` y `available`. Al crear un libro, `available` es `true` si no se especifica otro valor.
 
 ## Alcance actual
 
-- La API permite listar libros, consultar un libro por ID y crear libros.
+- La API permite listar libros o filtrarlos por título, consultar un libro por ID y crear libros.
 - Los libros se mantienen en una lista en memoria; no se debe asumir persistencia entre reinicios.
 - No hay operaciones implementadas para editar o borrar libros.
 
